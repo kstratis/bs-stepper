@@ -127,7 +127,6 @@ const detectAnimation = (contentList, animation) => {
 
 const triggerEvent = (name, element) => {
   // Triggers a custom event
-  console.log('triggering event function running');
   var e = $.Event(name);
   element.trigger(e);
   if (e.isDefaultPrevented()) {
