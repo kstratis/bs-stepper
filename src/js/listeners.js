@@ -1,5 +1,5 @@
 import { closest } from './polyfill'
-import { Selectors, customProperty, showStep, showContent } from './util'
+import { Selectors, customProperty, showStep, showContent, triggerEvent } from './util'
 
 function clickStepLinearListener (event) {
   event.preventDefault()
@@ -7,6 +7,12 @@ function clickStepLinearListener (event) {
 
 function clickStepNonLinearListener (event) {
   event.preventDefault()
+
+  const target = $(event.target);
+
+  if (triggerEvent("leaveStep", target) === false){
+    return false;
+  }
 
   const step = closest(event.target, Selectors.STEPS)
   const stepperNode = closest(step, Selectors.STEPPER)
@@ -16,6 +22,8 @@ function clickStepNonLinearListener (event) {
   stepper._currentIndex = stepIndex
   showStep(step, stepper._steps)
   showContent(stepper._stepsContents[stepIndex], stepper._stepsContents)
+
+  triggerEvent("showStep", target);
 }
 
 export {
