@@ -205,7 +205,6 @@
 
   var triggerEvent = function triggerEvent(name, element) {
     // Triggers a custom event
-    console.log('triggering event function running');
     var e = $.Event(name);
     element.trigger(e);
 
@@ -222,8 +221,9 @@
 
   function clickStepNonLinearListener(event) {
     event.preventDefault();
+    var target = $(event.target);
 
-    if (triggerEvent("leaveStep", $(event.target)) === false) {
+    if (triggerEvent("leaveStep", target) === false) {
       return false;
     }
 
@@ -236,7 +236,7 @@
     stepper._currentIndex = stepIndex;
     showStep(step, stepper._steps);
     showContent(stepper._stepsContents[stepIndex], stepper._stepsContents);
-    triggerEvent("showStep");
+    triggerEvent("showStep", target);
   }
 
   var DEFAULT_OPTIONS = {
@@ -293,14 +293,11 @@
       var _this2 = this;
 
       this._steps.forEach(function (step) {
-        console.log('setting listener');
         var trigger = step.querySelector(Selectors.TRIGGER);
 
         if (_this2.options.linear) {
           trigger.addEventListener('click', clickStepLinearListener);
         } else {
-          // console.log('setting non linear listener on ' + trigger);
-          console.log('SHAKALAKA');
           trigger.addEventListener('click', clickStepNonLinearListener);
         }
       });
