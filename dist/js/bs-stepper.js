@@ -221,8 +221,9 @@
 
   function clickStepNonLinearListener(event) {
     event.preventDefault();
+    var target = $(event.target);
 
-    if (triggerEvent("leaveStep", $('body')) === false) {
+    if (triggerEvent("leaveStep", target) === false) {
       return false;
     }
 
@@ -235,7 +236,7 @@
     stepper._currentIndex = stepIndex;
     showStep(step, stepper._steps);
     showContent(stepper._stepsContents[stepIndex], stepper._stepsContents);
-    triggerEvent("showStep", $('body'), stepper._currentIndex + 1);
+    triggerEvent("showStep", target, stepper._currentIndex + 1);
   }
 
   var DEFAULT_OPTIONS = {
