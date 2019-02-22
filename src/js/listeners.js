@@ -8,9 +8,7 @@ function clickStepLinearListener (event) {
 function clickStepNonLinearListener (event) {
   event.preventDefault()
 
-  const target = $(event.target);
-
-  if (triggerEvent("leaveStep", target) === false){
+  if (triggerEvent("leaveStep", $('body')) === false){
     return false;
   }
 
@@ -23,7 +21,7 @@ function clickStepNonLinearListener (event) {
   showStep(step, stepper._steps)
   showContent(stepper._stepsContents[stepIndex], stepper._stepsContents)
 
-  triggerEvent("showStep", target);
+  triggerEvent("showStep", $('body'), stepper._currentIndex + 1);
 }
 
 export {

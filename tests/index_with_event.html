@@ -81,7 +81,7 @@
             <div class="bs-stepper-content">
               <div id="test-nl-1" class="content">
                 <p class="text-center">test 3</p>
-                <button class="btn btn-primary" onclick="stepper2.next()">Next</button>
+                <button class="btn btn-primary next" onclick="stepper2.next()">Next</button>
               </div>
               <div id="test-nl-2" class="content">
                 <p class="text-center">test 4</p>
@@ -160,6 +160,12 @@
 
         $('.step-trigger').on('leaveStep', function(){
           return false
+        });
+
+        $('body').on('showStep', function(event, params){
+          console.log('works');
+          console.log(event);
+          console.log(params);
         });
       })
     </script>

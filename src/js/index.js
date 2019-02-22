@@ -1,4 +1,4 @@
-import { showContent, showStep, Selectors, ClassName, customProperty, detectAnimation } from './util'
+import { showContent, showStep, Selectors, ClassName, customProperty, detectAnimation, triggerEvent } from './util'
 import { clickStepLinearListener, clickStepNonLinearListener } from './listeners'
 
 const DEFAULT_OPTIONS = {
@@ -62,6 +62,8 @@ class Stepper {
 
     showStep(this._steps[this._currentIndex], this._steps)
     showContent(this._stepsContents[this._currentIndex], this._stepsContents)
+
+    triggerEvent("showStep", $('body'), this._currentIndex + 1);
   }
 
   previous () {
@@ -69,6 +71,8 @@ class Stepper {
 
     showStep(this._steps[this._currentIndex], this._steps)
     showContent(this._stepsContents[this._currentIndex], this._stepsContents)
+
+    triggerEvent("showStep", $('body'), this._currentIndex + 1);
   }
 
   to (stepNumber) {
@@ -79,6 +83,8 @@ class Stepper {
 
     showStep(this._steps[this._currentIndex], this._steps)
     showContent(this._stepsContents[this._currentIndex], this._stepsContents)
+
+    triggerEvent("showStep", $('body'), this._currentIndex + 1);
   }
 
   reset () {

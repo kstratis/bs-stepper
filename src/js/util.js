@@ -125,10 +125,10 @@ const detectAnimation = (contentList, animation) => {
   }
 }
 
-const triggerEvent = (name, element) => {
+const triggerEvent = (name, element, params) => {
   // Triggers a custom event
   var e = $.Event(name);
-  element.trigger(e);
+  element.trigger(e, params);
   if (e.isDefaultPrevented()) {
     return false;
   }
